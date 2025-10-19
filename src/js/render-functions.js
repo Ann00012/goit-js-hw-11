@@ -8,7 +8,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captions: true,
   captionsData: 'alt',
   captionDelay: 250,
-   captionPosition: 'bottom',
+  captionPosition: 'bottom',
 });
 
 export function createGallery(images){
@@ -39,7 +39,6 @@ export function createGallery(images){
     </li>
     `;
   }).join("");
-  console.log(lightbox);
     gallery.insertAdjacentHTML('beforeend', markup);
     lightbox.refresh();
 };

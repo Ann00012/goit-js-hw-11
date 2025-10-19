@@ -17,17 +17,12 @@ export function getImagesByQuery(query){
         }
     })
     .then((response)=>{
-        if(response.data.hits.length==0){
-            throw new Error(); 
+        if(response.data.hits.length===0){
+            throw new Error("NO RESULTS"); 
         };
         return response.data.hits
     })
     .catch((error)=>{
-        iziToast.error({
-           title: 'Error',
-           message: 'Sorry, there are no images matching your search query. Please try again!',
-           position: "topRight"
-});
-return [];
+        throw error;
     });
 }

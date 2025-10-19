@@ -28,15 +28,27 @@ showLoader();
   }
  getImagesByQuery(inputValue)
  .then((images)=>{
-    hideLoader();
-    if (images.length > 0) {
-        createGallery(images);
-      }
+      createGallery(images);
  })
- .catch(() => {
-      hideLoader(); 
+ .catch((error) => {
+ if (error.message === "NO RESULTS") {
+        iziToast.error({
+          title: "No Results",
+          message: "Sorry, there are no images matching your search query. Please try again!",
+          position: "topRight",
+          timeout: 3000,
+        });
+      } else {
+        iziToast.error({
+          title: "Error",
+          message: "An unexpected error occurred. Please try again later.",
+          position: "topRight",
+          timeout: 3000,
+        });
+      }
     })
 .finally(()=>{
+    hideLoader();
     form.reset();
 })
 }
